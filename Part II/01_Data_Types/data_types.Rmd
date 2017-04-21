@@ -1,0 +1,21 @@
+---
+title: "Data types"
+output: html_notebook
+---
+
+## Objects
+- character
+- numeric (real numbers)
+- integer
+- complex
+- logical (True/False)
+
+The most basic object is a vector
+
+> A vector can only contain objects of the same class
+
+```{r}
+attributes(matrix(1:4, 2))
+```
+
+
