@@ -195,3 +195,162 @@ print(m)
 ```
 
 ## Reading and Writing data in R
+### Basic functions
+- read.table
+- read.csv
+- readLines
+
+```{r}
+# data <- read.table("foo.txt")
+```
+
+#### dput-ting R Objects
+```{r}
+y <- data.frame(a = 1, b = 'a')
+dput(y)
+```
+```{r}
+dput(y, file = '/tmp/y.R')
+new.y = dget('/tmp/y.R')
+new.y
+```
+
+### Connections
+- file
+- gzfile
+- bzfile
+- url
+
+Example
+```{r}
+#conn <- file("foo.txt", "r")
+#data <- read.csv(conn)
+#close(conn)
+
+# is the same as
+#data <- read.csv("foo.txt")
+```
+
+Another example
+```{r}
+#conn <- gzfile("words.gz")
+#x <- readLines(conn)
+#head(x)
+```
+
+And now a (possible) slow example
+```{r}
+link_address <- "https://uspdigital.usp.br/jupiterweb/"
+conn <- url(link_address)
+x <- readLines(conn)
+close(conn)
+head(x)
+```
+
+## Subseting
+```{r}
+x <- c("a", "b", "c", "c", "d", "a")
+x[1]
+x[2]
+x[1:4]
+x[x > "a"]
+u <- x > "a"
+u
+```
+
+```{r}
+x <- list(foo = 1:4, bar = 0.6)
+x[1]
+x[[1]]
+x$bar
+x[["bar"]]
+x["bar"]
+```
+
+```{r}
+x <- list(foo = 1:4, bar = 0.6, baz = "hello")
+x[c(1, 3)]
+```
+
+```{r}
+x <- list(foo = 1:4, bar = 0.6, baz = "hello")
+name <- "foo"
+x[[name]]
+x$name      # element `name` doesn't exist!
+x$foo
+```
+
+```{r}
+x <- list(a = list(10, 12, 14), b = c(3.14, 2.81))
+x[[c(1, 3)]]
+x[[1]][[3]]
+x[[c(2, 1)]]
+```
+
+```{r}
+x <- matrix(1:6, 2, 3)
+x
+x[1, 2]
+x[2, 1]
+x[1, ]
+x[, 2]
+```
+
+```{r}
+x <- matrix(1:6, 2, 3)
+x[1, ]
+x[1, , drop = FALSE]
+```
+
+```{r}
+x <- list(aardvark = 1:5)
+x$a
+x[["a"]]
+x[["a", exact = FALSE]]
+```
+
+```{r}
+x <- c(1, 2, NA, 4, NA, 5)
+bad <- is.na(x)
+x[!bad]
+```
+```{r}
+x <- c(1, 2, NA, 4, NA, 5)
+y <- c("a", "b", NA, "d", NA, "f")
+
+good <- complete.cases(x, y)
+good
+
+x[good]
+y[good]
+```
+
+```{r}
+x <- c(1, 2, NA, 4, NA, 5)
+y <- c("a", "b", NA, "d", "f", NA)
+
+good <- complete.cases(x, y)
+good
+
+x[good]
+y[good]
+```
+
+## Vectorized Operations
+```{r}
+x <- 1:4; y <- 6:9
+x + y
+x > 2
+x >= 2
+y == 8
+x * y
+x / y
+```
+
+```{r}
+x <- matrix(1:4, 2, 2); y <- matrix(rep(10, 4), 2, 2)
+x * y
+x / y
+x %*% y
+```
+
