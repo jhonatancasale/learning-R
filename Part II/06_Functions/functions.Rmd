@@ -1,0 +1,109 @@
+---
+title: "Functions"
+output:
+  html_notebook: default
+  pdf_document: default
+---
+
+## Functions
+
+```{r}
+#f <- function(<arguments>) {
+#  ## Do something interesting
+#}
+```
+
+```{r}
+hello <- function() {
+  print("Hello world!")
+}
+
+hello()
+```
+
+```{r}
+add2 <- function(x, y) {
+  x + y ## the last executed statement is the return value
+}
+
+print(add2(42, 23))
+```
+
+```{r}
+abovee10 <- function(x) {
+  x[x > 10]
+}
+```
+
+```{r}
+above <- function(x, n) {
+  x[x > n]
+}
+```
+
+```{r}
+above <- function(x, n = 10) {
+  x[x > n]
+}
+```
+
+```{r}
+columnMean <- function(y, removeNA = TRUE) {
+  nc <- ncol(y)
+  means <- numeric(nc)
+  
+  for(i in 1:nc) {
+    means[i] <- mean(y[, i], na.rm = removeNA)
+  }
+  means
+}
+```
+
+```{r}
+search()
+```
+
+```{r}
+make.power <- function(n) {
+  pow <- function(x) {
+    x ^ n
+  }
+}
+
+cube <- make.power(3)
+square <- make.power(2)
+
+cube(3)
+square(3)
+```
+
+```{r}
+ls(environment(cube))
+get("n", environment(cube))
+```
+
+```{r}
+ls(environment(square))
+get("n", environment(square))
+```
+
+```{r}
+y <- 10
+
+f <- function(x) {
+  y <- 2
+  y ^ 2 + g(x)
+}
+
+g <- function(x) {
+  x * y
+}
+```
+
+```{r}
+f(3)
+## in f(3)
+## 2 ^ 2 + g(3) -> in g
+## 3 * 10 and
+## 2 ^ 2 + 30 -> 34
+```
