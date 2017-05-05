@@ -1,0 +1,50 @@
+---
+title: "Decision Structures"
+output: html_notebook
+---
+
+## if-else
+```{r}
+#if (<condition>) {
+#  ## do something 
+#} else {
+#  ## do something else
+#}
+```
+
+```{r}
+#if (<condition1>) {
+#  ## do something 
+#} else if (<condition2>) {
+#  ## do something different
+#} else {
+#  ## do something different
+#}
+```
+
+Let's see some examples
+```{r}
+x <- 2
+if (x > 3) {
+  y <- 10
+} else {
+  y <- 0
+}
+y
+```
+
+Or in one single line
+```{r}
+y <- if (x > 3) {
+  10
+} else {
+  0
+}
+y
+```
+
+Ok, in `really` one single line
+```{r}
+y <- if (x > 3) 10 else 0
+y
+```
