@@ -1,0 +1,45 @@
+---
+title: "Operators"
+output:
+  html_notebook: default
+  pdf_document: default
+---
+
+```{r}
+a <- 42; b <- 23
+a + b
+a - b
+a * b
+a / b
+a %% b
+a ^ b
+sqrt(a)
+```
+
+```{r}
+x <- 0:10; y <- 20:30
+x
+y
+
+x + y
+x - y
+x * y
+x / y
+x ^ y
+```
+
+```{r}
+x <- 0:10; y <- 20:30
+
+x %*% y
+as.numeric(x %*% y)
+
+x <- c(x, -1) ## now I have lenght(x) -> 12
+dim(x) <- c(3, 4)
+
+y <- c(y, -9) ## now I have lenght(y) -> 12
+dim(y) <- c(3, 4)
+
+x %*% t(y)
+```
+
