@@ -107,3 +107,15 @@ f(3)
 ## 3 * 10 and
 ## 2 ^ 2 + 30 -> 34
 ```
+
+```{r}
+"%p%" <- function(...){ # Remember to add arguments!
+  paste(...)
+}
+
+'%q%' <- function(...){ # Remember to add arguments!
+  paste(...)
+}
+
+"I" %p% "love" %p% "R!"
+```
