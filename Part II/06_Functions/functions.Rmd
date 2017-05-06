@@ -119,3 +119,28 @@ f(3)
 
 "I" %p% "love" %p% "R!"
 ```
+
+```{r}
+mad_libs <- function(...){
+  args <- list(...)
+  place <- args[["place"]]
+  adjective <- args[["adjective"]]
+  noun <- args[["noun"]]
+
+  paste("News from", place, "today where", adjective, "students took to the streets in protest of the new", noun, "being installed on campus.")
+}
+```
+
+```{r}
+telegram <- function(...){
+  paste("START", ..., "STOP") 
+}
+```
+
+```{r}
+evaluate <- function(func, dat){
+  func(dat)
+}
+
+```
+
