@@ -122,3 +122,48 @@ for(i in 1:100) {
 ```
 
 
+## Looping on the command line
+- lapply -> Loop over a list and evaluate a function on each element
+- sapply -> Same as `lapply` but try to simplify the result
+- apply -> Apply a function over the margins of an array
+- tapply -> Apply a function over subsets of a vector
+- mapply -> Multivariate version of `lapply`
+
+An auxiliary function `split` is also useful, particularly in conjunction with `lapply`
+
+```{r}
+x <- list(a = 1:5, b = rnorm(10))
+lapply(x, mean)
+```
+
+```{r}
+x <- list(a = 1:4, b = rnorm(10), c = rnorm(20, 1), d = rnorm(100, 5))
+lapply(x, mean)
+```
+
+
+```{r}
+x <- 1:4
+lapply(x, runif)
+```
+
+```{r}
+x <- 1:4
+lapply(x, runif, min = 0, max = 10)
+```
+
+```{r}
+x <- list(a = matrix(1:4, 2, 2), b = matrix(1:6, 3, 2))
+x
+```
+
+```{r}
+lapply(x, function(m) m[,1])
+#lapply(x, function(m){ m[,1] }) ## Note the {}}
+```
+
+
+```{r}
+x <- list(a = 1:4, b = rnorm(10), c = rnorm(20, 1), d = rnorm(100, 5))
+sapply(x, mean)
+```
