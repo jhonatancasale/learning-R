@@ -167,3 +167,107 @@ lapply(x, function(m) m[,1])
 x <- list(a = 1:4, b = rnorm(10), c = rnorm(20, 1), d = rnorm(100, 5))
 sapply(x, mean)
 ```
+
+
+```{r}
+x <- matrix(rnorm(200), 20, 10)
+apply(x, 2, mean) ## mean of all columns
+print("")
+apply(x, 1, sum)  ## sum of all rows
+```
+
+```{r}
+print("")
+rowSums(x) == apply(x, 1, sum)
+colSums(x) == apply(x, 2, sum)
+
+rowMeans(x) == apply(x, 1, mean)
+colMeans(x) == apply(x, 2, mean)
+#rowSums, colSums, rowMeans and colMeans are highly optimezed to perform such task.
+```
+
+```{r}
+x <- matrix(rnorm(200), 20, 10)
+apply(x, 1, quantile, probs = c(.25, .75))
+```
+
+
+```{r}
+a <- array(rnorm(2 * 2 * 10), c(2, 2, 10))
+apply(a, c(1, 2), mean) ## preserve dim(1, 2)
+
+rowMeans(a, dims = 2)
+```
+
+
+```{r}
+list(rep(1, 4), rep(2, 3), rep(3, 2), rep(4, 1))
+
+mapply(rep, 1:4, 4:1)
+```
+
+
+
+```{r}
+noise <- function(n, mean, sd) {
+  rnorm(n, mean, sd)
+}
+
+noise(5, 1, 2)
+```
+
+```{r}
+noise(1:5, 1:5, 2)
+mapply(noise, 1:5, 5:1, 2)
+```
+
+
+```{r}
+x <- c(rnorm(10), runif(10), rnorm(10, 1))
+f <- gl(3, 10)
+f
+tapply(x, f, mean)
+tapply(x, f, range)
+```
+
+
+```{r}
+x <- c(rnorm(10), runif(10), rnorm(10, 1))
+f <- gl(3, 10)
+split(x, f)
+lapply(split(x, f), mean) ## same as tapply(x, f, mean)
+```
+
+```{r}
+library(datasets)
+head(airquality)
+```
+
+```{r}
+s <- split(airquality, airquality$Month)
+lapply(s, function(x){ colMeans(x[, c("Ozone", "Solar.R", "Wind")]) })
+```
+
+```{r}
+sapply(s, function(x){ colMeans(x[, c("Ozone", "Solar.R", "Wind")]) })
+sapply(s, function(x){ colMeans(x[, c("Ozone", "Solar.R", "Wind")], 
+                                na.rm = TRUE) })
+```
+
+```{r}
+x <- rnorm(10)
+f1 <- gl(2, 5)
+f2 <- gl(5, 2)
+f1
+f2
+interaction(f1, f2)
+```
+
+```{r}
+str(split(x, list(f1, f2))) ## implicit call of interaction
+```
+
+```{r}
+str(split(x, list(f1, f2), drop = TRUE)) ## Droping the empty levels
+```
+
