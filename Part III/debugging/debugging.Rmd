@@ -1,0 +1,53 @@
+---
+title: "Functions"
+output:
+  html_notebook: default
+  pdf_document: default
+---
+
+## Useful functions
+- traceback
+- debug
+- browser
+- trace
+- recover
+
+
+## Examples
+```{r}
+mean(x)
+```
+
+```{r}
+traceback()
+```
+
+```{r}
+lm(y - x)
+```
+
+```{r}
+traceback()
+```
+
+
+```{r}
+debug(lm) ## I can debug any arbitrary function
+lm(y - x)
+#n          next
+#f          finish
+#c or cont  continue
+#Q          quit
+#where      show stack
+#help       show help
+#<expr>     evaluate expression
+```
+
+
+```{r}
+options(error = recover) ## this is a global option
+read.csv("I.don't.exist.csv")
+```
+
+
+
