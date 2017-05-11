@@ -134,6 +134,7 @@ An auxiliary function `split` is also useful, particularly in conjunction with `
 ```{r}
 x <- list(a = 1:5, b = rnorm(10))
 lapply(x, mean)
+#'l' in lapply stands for 'list'
 ```
 
 ```{r}
@@ -166,6 +167,7 @@ lapply(x, function(m) m[,1])
 ```{r}
 x <- list(a = 1:4, b = rnorm(10), c = rnorm(20, 1), d = rnorm(100, 5))
 sapply(x, mean)
+# s for simplify
 ```
 
 
@@ -269,5 +271,13 @@ str(split(x, list(f1, f2))) ## implicit call of interaction
 
 ```{r}
 str(split(x, list(f1, f2), drop = TRUE)) ## Droping the empty levels
+```
+
+
+
+## vapply
+```{r}
+#vapply(data, function, return.type)
+#raise a error if sapply returns somethinf different than return.type
 ```
 
