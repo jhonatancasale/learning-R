@@ -1,0 +1,125 @@
+---
+title: "Simulation & Profiling"
+author: "Jhonatan Casale"
+date: "May 12, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Looking at Data
+
+```{r}
+data <- matrix(1:2048, 512)
+object.size(data)
+```
+
+```{r}
+sample(1:6, 4, replace = TRUE)
+```
+
+Each probability distribution in R has an r??? function (for "random"), a
+d??? function (for "density"), a p??? (for "probability"), and q??? (for "quantile").
+
+```{r}
+data <- replicate(100, rpois(5, 10))
+str(data)
+```
+
+## Simulation
+
+```{r}
+a <- rnorm(10)
+b <- rnorm(10, 20, 2)
+
+summary(a)
+summary(b)
+```
+
+```{r}
+set.seed(1)
+rnorm(5)
+rnorm(5)
+set.seed(1)
+rnorm(5)
+```
+
+
+```{r}
+set.seed(20)
+x <- rnorm(100)
+e <- rnorm(100, 0, 2)
+y <- .5 + 2 * x + e
+
+summary(y)
+plot(x, y)
+```
+
+
+
+```{r}
+set.seed(10)
+x <- rbinom(100, 1, .5)
+e <- rnorm(100, 0, 2)
+y <- .5 + 2 * x + e
+
+summary(y)
+plot(x, y)
+```
+
+
+
+```{r}
+set.seed(1)
+
+x <- rnorm(100)
+log.mu <- .5 + .3 * x
+y <- rpois(100, exp(log.mu))
+
+summary(y)
+plot(x, y)
+```
+
+
+```{r}
+set.seed(1)
+
+sample(1:10, 4)
+sample(1:10, 4)
+sample(letters, 5)
+sample(1:10) ## permutation
+sample(1:10)
+sample(1:10, replace = TRUE) ## Sample w/ replacement
+```
+
+
+## Profiler tool
+### Using system.time()
+
+```{r}
+## Elapsed time > user time
+system.time(readLines("http://www.jhsph.edu"))
+
+## Elapser time < user time
+hilbert <- function(n) {
+  i <- 1:n
+  1 / outer(i - 1, i, "+")
+}
+x <- hilbert(1000)
+system.time(svd(x))
+```
+
+### Timing longer expressions
+```{r}
+system.time({
+  n <- 1000
+  r <- numeric(n)
+  for(i in 1:n) {
+    x <- rnorm(n)
+    r[i] <- mean(x)
+  }
+})
+```
+
